@@ -11,7 +11,7 @@ import { IoMdAdd } from "react-icons/io";
 
 function Sidebar() {
     return (
-        <section className='w-[18%] flex flex-col gap-7 bg-black text-white pl-5 h-screen pt-4 relative'>
+        <section className='w-[18%] flex flex-col gap-7 bg-black text-white pl-5 h-screen pt-4 fixed'>
             <div className='flex items-center gap-3'>
                 <img src={profile_pic} alt="Profile picture of the user" className='w-10 h-10 rounded-full'/>
                 <span>Sandesh</span>
