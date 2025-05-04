@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body{
+    font-family: 'Roboto',sans-serif;
+}
+
 .container {
     max-width: 1180px;
     margin-inline: auto;
