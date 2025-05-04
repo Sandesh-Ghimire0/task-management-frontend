@@ -5,11 +5,13 @@ import profile_pic from '../assets/profile_pic.jpg'
 import { BsFillBarChartLineFill, BsLayoutSidebar } from "react-icons/bs";
 import { FaClipboardList, FaTasks } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
-
+import { useDispatch } from 'react-redux';
+import { openTaskForm } from '../store/uiSlice';
 
 
 
 function Sidebar() {
+    const dispatch = useDispatch()
     return (
         <section className='w-[18%] flex flex-col gap-7 bg-black text-white pl-5 h-screen pt-4 fixed'>
             <div className='flex items-center gap-3'>
@@ -20,8 +22,11 @@ function Sidebar() {
                 <BsLayoutSidebar />
             </div>
 
-            <NavLink to='/tasks?addTask=true'>
-                <div className='flex items-center gap-3'>
+            <NavLink to='/tasks'>
+                <div 
+                    className='flex items-center gap-3'
+                    onClick={()=>dispatch(openTaskForm())}
+                >
                     <span>Add Task</span>
                     <IoMdAdd />
                 </div>

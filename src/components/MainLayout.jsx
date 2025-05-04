@@ -12,6 +12,7 @@ function MainLayout() {
     useEffect(()=>{
         dispatch(fetchTasks())
     },[dispatch])
+
   return (
     <>
         <div className='flex'>

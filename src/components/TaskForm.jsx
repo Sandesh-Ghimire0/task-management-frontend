@@ -1,10 +1,33 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTask } from '../store/taskSlice'
+import { postTask } from '../api/api'
+import { useNavigate } from 'react-router-dom';
+import { closeTaskForm } from '../store/uiSlice';
 
-function TaskForm({setShowTaskForm}) {
+function TaskForm() {
+    const dispatch = useDispatch()
+    // const tasks = useSelector(state => state.task)
+    // const showTaskForm = useSelector(state => state.ui.showTaskForm)
+    // const navigate = useNavigate()
+
+    async function handleAddTask(formData){
+        const data = Object.fromEntries(formData.entries())
+        const res = await postTask(data)
+
+        if(res.status == 200){
+            dispatch(addTask(res.data.data)) // i need to push the data with _id property
+        }
+
+        dispatch(closeTaskForm())
+        
+    }
+
+
     return (
         <section className="p-6 bg-white">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Create a New Task</h2>
-            <form className="space-y-4">
+            <form action={handleAddTask} className="space-y-4">
                 <div>
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
                     <input type="text" name="title" id="title" className="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -21,6 +44,7 @@ function TaskForm({setShowTaskForm}) {
                         <option value="pending">Pending</option>
                         <option value="in-progress">In-Progress</option>
                         <option value="completed">Completed</option>
+                        <option value="delayed">Delayed</option>
                     </select>
                 </div>
 
@@ -48,16 +72,20 @@ function TaskForm({setShowTaskForm}) {
                 </div>
 
                 <div className='flex gap-10'>
-                    <button type="submit" className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                    <button 
+                        type="submit" 
+                        className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+                        onClick={handleAddTask}
+                    >
                         Add Task
                     </button>
 
-                    <button 
-                        className="w-full mt-4 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-                        onClick={()=>setShowTaskForm(prev => !prev)}
+                    <div 
+                        className="flex justify-center w-full mt-4 bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+                        onClick={()=>dispatch(closeTaskForm())}
                     >
                         cancel
-                    </button>
+                    </div>
                 </div>
 
             </form>
