@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-import { deleteTask } from '../api/api';
+import { deleteTask, updateTask } from '../api/api';
 import { useDispatch } from 'react-redux';
-import { removeTask } from '../store/taskSlice';
+import { editTask, removeTask } from '../store/taskSlice';
 import EditTaskForm from './EditTaskForm';
 
 function Task({task}) {
     const [showEditTaskForm, setShowEditTaskForm] = useState(false)
-
-    const { title, description, status, priority, dueDate } = task
     const dispatch = useDispatch()
+    
+    const {_id, title, description, status, priority, dueDate } = task
+    const [isCompleted, setIsCompleted] = useState(status === 'completed')
 
 
     async function handleDeleteTask(_id){
@@ -18,6 +19,21 @@ function Task({task}) {
         if(res.status == 200){
             dispatch(removeTask(_id))
         }
+    }
+
+
+    const handleCompletedChecked = async () =>{
+        let updatedData;
+        setIsCompleted(!isCompleted)
+        if(!isCompleted){
+            const res = await updateTask({_id,...task, status:"completed"})
+            updatedData = res.data.data
+        } else{
+            const res = await updateTask({_id,...task,status:"in-progress"})
+            updatedData = res.data.data
+        }
+
+        dispatch(editTask(updatedData))
     }
 
 
@@ -32,7 +48,9 @@ function Task({task}) {
                                 ? 'bg-green-100 text-green-700'
                                 : status === 'in-progress'
                                 ? 'bg-yellow-100 text-yellow-700'
-                                : 'bg-gray-100 text-gray-700'
+                                : status === 'delayed'
+                                ?'bg-red-100 text-red-700'
+                                :'bg-gray-100 text-gray-700'
                         }`}
                     >
                         {status}
@@ -68,7 +86,8 @@ function Task({task}) {
                         <input 
                             type="checkbox" 
                             className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-                            defaultChecked={status === 'completed'?true:false}
+                            checked={isCompleted}
+                            onChange={handleCompletedChecked}
                         />
                     </div>
 

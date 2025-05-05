@@ -34,10 +34,10 @@ function EditTaskForm({setShowEditTaskForm, task}) {
                 <div>
                     <label htmlFor="status" className="block text-sm font-medium text-gray-700">Status:</label>
                     <select name="status" id="status" className="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="pending" defaultValue={"pending" === status?true:false}>Pending</option>
-                        <option value="in-progress" defaultValue={"in-progress" === status?true:false}>In-Progress</option>
-                        <option value="completed" defaultValue={"completed" === status?true:false}>Completed</option>
-                        <option value="delayed" defaultValue={"delayed" === status?true:false}>Delayed</option>
+                        <option value="pending" selected={"pending" === status?true:false}>Pending</option>
+                        <option value="in-progress" selected={"in-progress" === status?true:false}>In-Progress</option>
+                        <option value="completed" selected={"completed" === status?true:false}>Completed</option>
+                        <option value="delayed" selected={"delayed" === status?true:false}>Delayed</option>
                     </select>
                 </div>
 
