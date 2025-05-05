@@ -34,3 +34,12 @@ export async function deleteTask(_id){
 
     }
 }
+
+export async function updateTask(updatedTask){
+    try {
+        const res = await api.put('/task/update-task',updatedTask)
+        return res
+    } catch (error) {
+        console.log("Failed to update task: ",error)
+    }
+}

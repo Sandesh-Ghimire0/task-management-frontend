@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getTasks } from "../api/api";
+import { getTasks, updateTask } from "../api/api";
 
 export const fetchTasks = createAsyncThunk('task/fetchTasks',async () => {
     try {
         const res = await getTasks()
-        console.log(res.data.data)
         return res.data.data
     } catch (error) {
         console.log(error.message)
@@ -25,6 +24,14 @@ const taskSlice = createSlice({
         removeTask:(state, action)=>{
             state = state.filter(task => task._id !== action.payload)
             return state
+        },
+        editTask:(state, action)=>{
+            console.log(action.payload)
+            return state.map(task => (   // map should return the value
+                task._id !== action.payload._id
+                    ?task
+                    :action.payload
+            ))
         }
     },
     extraReducers:(builder) =>{
@@ -34,5 +41,5 @@ const taskSlice = createSlice({
     }
 })
 
-export const {addTask, removeTask} = taskSlice.actions
+export const {addTask, removeTask,editTask } = taskSlice.actions
 export default taskSlice.reducer

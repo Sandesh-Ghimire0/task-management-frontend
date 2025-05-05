@@ -1,12 +1,26 @@
 import React from 'react'
+import { updateTask } from '../api/api';
+import { useDispatch, useSelector } from 'react-redux'
+import { editTask } from '../store/taskSlice';
 
 function EditTaskForm({setShowEditTaskForm, task}) {
-    const { title, description, status, priority, dueDate } = task
+    const {_id, title, description, status, priority, dueDate } = task
     const formattedDate =  dueDate &&  new Date(dueDate).toISOString().split("T")[0];
+
+    const dispatch = useDispatch()
+
+    const handleEditFormSubmit =async (formData)=>{
+        const updatedData = Object.fromEntries(formData.entries())
+        const res = await updateTask({_id,...updatedData})
+        if(res.status === 200){
+            dispatch(editTask(res.data.data))
+        }
+        setShowEditTaskForm(prev => !prev)
+    }
     return (
         <section className="p-6 bg-white">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Update Task</h2>
-            <form className="space-y-4">
+            <form action={handleEditFormSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title:</label>
                     <input type="text" defaultValue={title} name="title" id="title" className="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
