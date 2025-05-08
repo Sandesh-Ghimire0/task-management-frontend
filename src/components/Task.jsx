@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { editTask, removeTask } from '../store/taskSlice';
 import EditTaskForm from './EditTaskForm';
 
-function Task({task}) {
+function Task({task,dashboard=false}) {
     const [showEditTaskForm, setShowEditTaskForm] = useState(false)
     const dispatch = useDispatch()
     
@@ -81,27 +81,30 @@ function Task({task}) {
                     </div>
                 </div>
 
-                <div className='flex justify-between items-center'>
-                    <div>
-                        <input 
-                            type="checkbox" 
-                            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
-                            checked={isCompleted}
-                            onChange={handleCompletedChecked}
-                        />
-                    </div>
-
-                    <div className='flex gap-3 mt-3'>
-                        <button 
-                            className='flex justify-center p-2 text-xl bg-red-500 text-white rounded-full cursor-pointer hover:bg-red-700'
-                            onClick={()=>handleDeleteTask(task._id)}
-                        ><MdDelete/></button>
-                        <button 
-                            className='flex justify-center  items-center p-2 text-xl bg-blue-500 text-white rounded-full cursor-pointer hover:bg-blue-700'
-                            onClick={()=>setShowEditTaskForm(prev => !prev)}
-                        ><FaEdit /></button>
-                    </div>
-                </div>
+               {
+                    !dashboard &&
+                     <div className='flex justify-between items-center'>
+                     <div>
+                         <input 
+                             type="checkbox" 
+                             className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                             checked={isCompleted}
+                             onChange={handleCompletedChecked}
+                         />
+                     </div>
+ 
+                     <div className='flex gap-3 mt-3'>
+                         <button 
+                             className='flex justify-center p-2 text-xl bg-red-500 text-white rounded-full cursor-pointer hover:bg-red-700'
+                             onClick={()=>handleDeleteTask(task._id)}
+                         ><MdDelete/></button>
+                         <button 
+                             className='flex justify-center  items-center p-2 text-xl bg-blue-500 text-white rounded-full cursor-pointer hover:bg-blue-700'
+                             onClick={()=>setShowEditTaskForm(prev => !prev)}
+                         ><FaEdit /></button>
+                     </div>
+                 </div>
+               }
 
             </div>
 
