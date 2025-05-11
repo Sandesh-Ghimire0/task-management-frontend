@@ -5,6 +5,11 @@ import Remaining from './pages/Remaining'
 import Dashboard from './pages/Dashboard'
 
 import Analytic from './pages/Analytic'
+import Login from './pages/Login'
+import Signup from './pages/SIgnup'
+
+
+
 function App() {
     
     const router = createBrowserRouter([
@@ -30,6 +35,14 @@ function App() {
                 }
             ]
 
+        },
+        {
+            path:'/login',
+            element:<Login />
+        },
+        {
+            path:"/signup",
+            element:<Signup />
         }
     ])
     return (
