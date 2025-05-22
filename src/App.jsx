@@ -4,7 +4,7 @@ import Tasks from './pages/Tasks'
 import Completed from './pages/Completed'
 import Dashboard from './pages/Dashboard'
 
-import Analytic from './pages/Analytic'
+import AiSummary from './pages/AiSummary'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import LandingPage from './pages/Landing'
@@ -42,8 +42,8 @@ function App() {
             element: <Completed />
         },
         {
-            path: '/analytic', 
-            element: <Analytic />
+            path: '/ai-summary', 
+            element: <AiSummary />
         }
     ]
   }

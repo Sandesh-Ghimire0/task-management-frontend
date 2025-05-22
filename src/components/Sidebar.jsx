@@ -63,9 +63,9 @@ function Sidebar() {
             <span>Completed</span>
           </NavLink>
 
-          <NavLink to='/analytic' className={navLinkStyles}>
+          <NavLink to='/ai-summary' className={navLinkStyles}>
             <BsFillBarChartLineFill />
-            <span>Analytic</span>
+            <span>AI Summary</span>
           </NavLink>
 
         </nav>

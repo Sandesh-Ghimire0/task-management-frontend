@@ -4,6 +4,7 @@ import Task from '../components/Task'
 
 function Completed() {
     const tasks = useSelector(state => state.task)
+    
 
   return (
     <div className='container'>
