@@ -43,3 +43,23 @@ export async function updateTask(updatedTask){
         console.log("Failed to update task: ",error)
     }
 }
+
+
+
+export async function loginUser(user){
+    try {
+        const res = await api.post('/user/login',user)
+        return res
+    } catch (error) {
+        console.log("Failed to login: ",error)
+    }
+}
+
+
+export async function logoutUser(){
+    try {
+        const res = await api.post('/user/logout',{})
+    } catch (error) {
+        console.log("logoutFailed",error)
+    }
+}

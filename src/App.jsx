@@ -7,43 +7,46 @@ import Dashboard from './pages/Dashboard'
 import Analytic from './pages/Analytic'
 import Login from './pages/Login'
 import Signup from './pages/SIgnup'
+import LandingPage from './pages/Landing'
 
 
 
 function App() {
     
     const router = createBrowserRouter([
+{
+    path: '/',
+    element: <LandingPage />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+  {
+    element: <MainLayout />,
+    children: [
         {
-            path:'/',
-            element:<MainLayout />,
-            children:[
-                {
-                    path:'/',
-                    element:<Dashboard />
-                },
-                {
-                    path:'/tasks',
-                    element:<Tasks />
-                },
-                {
-                    path:'/remaining',
-                    element:<Remaining />
-                },
-                {
-                    path:'/analytic',
-                    element:<Analytic />
-                }
-            ]
-
+            path:'/dashboard',
+            element: <Dashboard />
         },
         {
-            path:'/login',
-            element:<Login />
+            path: '/tasks',
+            element: <Tasks />
         },
         {
-            path:"/signup",
-            element:<Signup />
+            path: '/remaining',
+            element: <Remaining />
+        },
+        {
+            path: '/analytic', 
+            element: <Analytic />
         }
+    ]
+  }
     ])
     return (
         <RouterProvider router={router}></RouterProvider>
