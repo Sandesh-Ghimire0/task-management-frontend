@@ -58,9 +58,9 @@ function Sidebar() {
             <span>Tasks</span>
           </NavLink>
 
-          <NavLink to='/remaining' className={navLinkStyles}>
+          <NavLink to='/completed' className={navLinkStyles}>
             <FaClipboardList />
-            <span>Remaining</span>
+            <span>Completed</span>
           </NavLink>
 
           <NavLink to='/analytic' className={navLinkStyles}>

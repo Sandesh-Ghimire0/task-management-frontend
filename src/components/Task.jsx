@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { editTask, removeTask } from '../store/taskSlice';
 import EditTaskForm from './EditTaskForm';
 
-function Task({task,dashboard=false}) {
+function Task({task,dashboard=false, completed=false}) {
     const [showEditTaskForm, setShowEditTaskForm] = useState(false)
     const dispatch = useDispatch()
     
@@ -98,10 +98,10 @@ function Task({task,dashboard=false}) {
                              className='flex justify-center p-2 text-xl bg-red-500 text-white rounded-full cursor-pointer hover:bg-red-700'
                              onClick={()=>handleDeleteTask(task._id)}
                          ><MdDelete/></button>
-                         <button 
+                        {!completed &&  <button 
                              className='flex justify-center  items-center p-2 text-xl bg-blue-500 text-white rounded-full cursor-pointer hover:bg-blue-700'
                              onClick={()=>setShowEditTaskForm(prev => !prev)}
-                         ><FaEdit /></button>
+                         ><FaEdit /></button>}
                      </div>
                  </div>
                }

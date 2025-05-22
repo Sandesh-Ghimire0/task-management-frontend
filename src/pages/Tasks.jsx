@@ -29,7 +29,8 @@ function Tasks() {
                         {
                             // displaying task card
                             tasks.map(task => {
-                                return <Task key={task._id} task={task}/>
+                                if(task.status !== 'completed')
+                                    return <Task key={task._id} task={task}/>
                             
                             })
                         }
