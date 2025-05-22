@@ -22,15 +22,20 @@ function Tasks() {
             )}
 
 
-            <div className='grid grid-cols-2 gap-3 pt-15'>
-                {
-                    // displaying task card
-                    tasks.map(task => {
-                        return <Task key={task._id} task={task}/>
-                      
-                    })
-                }
-            </div>
+            {
+                tasks.length === 0
+                    ?<h1 className='text-gray-400 font-medium'>No Tasks..</h1>
+                    :<div className='grid grid-cols-2 gap-3 pt-15'>
+                        {
+                            // displaying task card
+                            tasks.map(task => {
+                                return <Task key={task._id} task={task}/>
+                            
+                            })
+                        }
+                    </div>
+                    
+            }
 
             <div className='absolute top-0 right-0'>
                 <button 

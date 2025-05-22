@@ -63,3 +63,13 @@ export async function logoutUser(){
         console.log("logoutFailed",error)
     }
 }
+
+
+export async function signUpUser(user){
+    try {
+        const res = await api.post('/user/signup',user)
+        return res
+    } catch (error) {
+        console.log("Failed to signup User:",error)
+    }
+}

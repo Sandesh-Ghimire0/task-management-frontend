@@ -14,7 +14,7 @@ function Login() {
         const res = await loginUser(user)
         console.log(res)
         if(res.status === 200){
-            navigate('/dashboard',{replace:true})
+            navigate('/dashboard')
         }else {
             // console.log(res)
         }
