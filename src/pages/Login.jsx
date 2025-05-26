@@ -7,16 +7,22 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState(false)
+    const [userError, setUserError]  = useState(false)
     const navigate = useNavigate();
 
     const handleLogin = async (formData) =>{
+        setPasswordError(false)
+        setUserError(false)
+
         const user = Object.fromEntries(formData.entries())
         const res = await loginUser(user)
-        console.log(res)
         if(res.status === 200){
             navigate('/dashboard')
-        }else {
-            // console.log(res)
+        }else if(res.response.data.message === "Incorrect password") {
+            setPasswordError(true)
+        }else if(res.response.data.message === "User does not exist"){
+            setUserError(true)
         }
 
     }
@@ -24,7 +30,7 @@ function Login() {
         <section className="min-h-screen flex flex-col">
         {/* Navbar */}
         <nav className="bg-gray-100 shadow-md px-8 py-4 flex items-center justify-between fixed top-0 w-full z-10">
-            <h2 className="font-bold text-xl text-gray-800">TaskManager</h2>
+            <Link to='/' className="text-2xl font-bold text-gray-800">TaskManager</Link>
             <Link to="/signup">
             <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
                 Signup
@@ -57,8 +63,12 @@ function Login() {
                     type="text"
                     name="email"
                     id="email"
+                    placeholder='san@example.com'
+                    required
                     className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
+                    {userError && <p className='text-red-500'>User does not exist</p>}
+
                 </div>
 
                 {/* Password */}
@@ -71,8 +81,11 @@ function Login() {
                         type={showPassword ? 'text' : 'password'}
                         name="password"
                         id="password"
+                        placeholder='1234567'
+                        required
                         className="w-full border border-gray-300 px-4 py-2 pr-10 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
+                    {passwordError && <p className='text-red-500'>Incorrect password</p>}
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}

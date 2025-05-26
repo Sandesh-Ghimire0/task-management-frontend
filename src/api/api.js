@@ -51,7 +51,8 @@ export async function loginUser(user){
         const res = await api.post('/user/login',user)
         return res
     } catch (error) {
-        console.log("Failed to login: ",error)
+        console.log(error.response.data.message)
+        return error
     }
 }
 
@@ -70,6 +71,7 @@ export async function signUpUser(user){
         const res = await api.post('/user/signup',user)
         return res
     } catch (error) {
-        console.log("Failed to signup User:",error)
+        console.log(error.response.data.message)
+        return error
     }
 }

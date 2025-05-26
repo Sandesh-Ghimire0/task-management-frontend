@@ -6,14 +6,30 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [showPassword, setShowPassword] = useState(false);
+    const [emailError, setEmailError] = useState(false)
+    const [usernameError, setUsernameError] = useState(false)
+
+    const [user , setUser] = useState({
+        username:'',
+        email:"",
+        password:''
+    })
+
     const navigate = useNavigate()
 
     const handleSignUp = async (formData) =>{
+        setEmailError(false)
+        setUsernameError(false)
+
         const userData = Object.fromEntries(formData.entries())
         const res = await signUpUser(userData)
 
         if(res.status == 200){
             navigate('/login')
+        } else if(res.response.data.message === "email already exist"){
+            setEmailError(true)
+        } else if(res.response.data.message === "User already exist"){
+            setUsernameError(true)
         }
 
     }
@@ -22,7 +38,7 @@ function Signup() {
         <section className="min-h-screen flex flex-col">
         {/* Navbar */}
         <nav className="bg-gray-100 shadow-md px-8 py-4 flex items-center justify-between fixed top-0 w-full z-10">
-            <h2 className="font-bold text-xl text-gray-800">TaskManager</h2>
+            <Link to='/' className="text-2xl font-bold text-gray-800">TaskManager</Link>
             <Link to="/login">
             <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
                 Login
@@ -55,9 +71,12 @@ function Signup() {
                     type="text"
                     name="username"
                     id="username"
+                    value={user.username}
+                    onChange={(e)=>setUser({...user,username:e.target.value})}
                     required
                     className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
+                    {usernameError && <p className='text-red-500'>Username already exist</p> }
                 </div>
 
                 {/* Email */}
@@ -69,9 +88,12 @@ function Signup() {
                     type="email"
                     name="email"
                     id="email"
+                    value={user.email}
+                    onChange={(e)=>setUser({...user,email:e.target.value})}
                     required
                     className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
+                    {emailError && <p className='text-red-500'>Email already exist</p>}
                 </div>
 
                 {/* Password */}
@@ -84,6 +106,8 @@ function Signup() {
                         type={showPassword ? 'text' : 'password'}
                         name="password"
                         id="password"
+                        value={user.password}
+                        onChange={(e)=>setUser({...user,password:e.target.value})}
                         required
                         className="w-full border border-gray-300 px-4 py-2 pr-10 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
