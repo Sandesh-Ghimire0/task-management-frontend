@@ -9,6 +9,12 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [passwordError, setPasswordError] = useState(false)
     const [userError, setUserError]  = useState(false)
+
+    const [user, setUser] = useState({
+        email:'',
+        password:''
+    })
+
     const navigate = useNavigate();
 
     const handleLogin = async (formData) =>{
@@ -39,7 +45,8 @@ function Login() {
         </nav>
 
         {/* Main Content */}
-        <div className="flex flex-1 justify-center items-center mt-24 px-6">
+        <div className="flex flex-1 justify-center items-center mt-24 px-6 relative">
+            <p className='absolute top-0'>try!! email:san@example.com , password:1234567 or sign up</p>
             <div className="flex w-full max-w-4xl bg-white shadow-lg rounded-xl overflow-hidden">
             {/* Left - Illustration */}
             <div className="w-1/2 bg-gray-100 hidden md:flex items-center justify-center p-8">
@@ -63,7 +70,8 @@ function Login() {
                     type="text"
                     name="email"
                     id="email"
-                    placeholder='san@example.com'
+                    value={user.email}
+                    onChange={(e)=>setUser({...user,email:e.target.value})}
                     required
                     className="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
@@ -81,7 +89,8 @@ function Login() {
                         type={showPassword ? 'text' : 'password'}
                         name="password"
                         id="password"
-                        placeholder='1234567'
+                        value={user.password}
+                        onChange={(e)=>setUser({...user,password:e.target.value})}
                         required
                         className="w-full border border-gray-300 px-4 py-2 pr-10 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />

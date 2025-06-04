@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { getAiSummary } from '../AI/summary'
 import ReactMarkDown from 'react-markdown'
 import {Commet} from 'react-loading-indicators'
-
+import { useQuery } from '@tanstack/react-query'
 
 function AiSummary() {
-    const [aiSummary, setAiSummary] = useState('')
+    // const [aiSummary, setAiSummary] = useState('')
     const tasks = useSelector(state => state.task)
 
     function formatTasksForSummary(tasks) {
@@ -24,16 +24,24 @@ function AiSummary() {
     const fetchSummary = async () => {
         const formattedTasks = formatTasksForSummary(tasks);
         const summary = await getAiSummary(formattedTasks);
-        setAiSummary(summary);
+        return summary
     };
 
+    const {data, isPending, isError, error } = useQuery({
+        queryKey:['summmary',tasks],
+        queryFn:fetchSummary,
+        staleTime:100000
+    })
 
-    useEffect(()=>{
-        fetchSummary()
-    },[tasks])
+    console.log(data)
 
 
-    if(!aiSummary){ 
+    // useEffect(()=>{
+    //     fetchSummary()
+    // },[tasks])
+
+
+    if(!data){ 
         return <div className='container flex h-screen justify-center items-center'>
             <Commet color="#32cd32" size="medium" text="Generating Summary..." textColor="" />
         </div>
@@ -42,7 +50,7 @@ function AiSummary() {
     return (
         <div className='container'>
             <h1 className='text-2xl font-semibold'>AI Summary Report</h1>
-            <ReactMarkDown>{aiSummary}</ReactMarkDown>
+            <ReactMarkDown>{data}</ReactMarkDown>
         </div>
     )
 }
