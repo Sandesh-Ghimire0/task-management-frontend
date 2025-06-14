@@ -5,10 +5,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-    server:{
-        proxy:{
-            '/api':'https://task-management-backend-aa8b.onrender.com'
+    server: {
+        proxy: {
+            '/api': 'https://localhost:8000'
         }
     },
-    plugins: [react(),tailwindcss()],
+    plugins: [react(), tailwindcss()],
 })
