@@ -26,7 +26,6 @@ const taskSlice = createSlice({
             return state
         },
         editTask:(state, action)=>{
-            console.log(action.payload)
             return state.map(task => (   // map should return the value
                 task._id !== action.payload._id
                     ?task

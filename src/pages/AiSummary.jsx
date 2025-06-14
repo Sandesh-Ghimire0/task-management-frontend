@@ -33,7 +33,6 @@ function AiSummary() {
         staleTime:100000
     })
 
-    console.log(data)
 
 
     // useEffect(()=>{

@@ -7,7 +7,6 @@ function Todos() {
     const fetchTasks = async () =>{
         try {
             const res = await getTasks()
-            // console.log(res.data.data)
             setTasks(res.data.data)
         } catch (error) {
             console.log(error)

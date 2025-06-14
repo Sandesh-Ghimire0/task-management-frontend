@@ -12,7 +12,6 @@ const API_KEY = import.meta.env.VITE_GROQ_API_KEY; // Use Vite env variable
 const groq = new Groq({ apiKey:API_KEY,dangerouslyAllowBrowser: true });
 
 export async function getAiSummary(tasks) {
-    console.log(tasks)
   try{
     const response =await groq.chat.completions.create({
       messages: [
