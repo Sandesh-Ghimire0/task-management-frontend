@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getTasks, updateTask } from "../api/api";
 
+// async thunk action creator 
 export const fetchTasks = createAsyncThunk('task/fetchTasks',async () => {
     try {
         const res = await getTasks()
@@ -10,6 +11,7 @@ export const fetchTasks = createAsyncThunk('task/fetchTasks',async () => {
         console.log(error.message)
     }
 })
+
 
 
 
