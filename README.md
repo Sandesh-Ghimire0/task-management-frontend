@@ -1,12 +1,56 @@
-# React + Vite
+## Task Manager
+A full stack web application where users can manage their task easily.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+This is a MERN stack application where frontend is built using React and backend is build using express and MongoDB database. This application allows the user to create task with certain properties. User can create, read, update and delete the task.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of content
+- [Key Feature](#key-features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Screenshots](#screenshots)
 
-## Expanding the ESLint configuration
+## key features
+- **Operations :** create, read, update and delete task ( manage tasks with properties such as title, description, status, priority, and due date.)
+- **Authentication :** Users are authenticated using the JWT 
+- **User Dashboard :** Allows user to monitor the task created through different graphs
+- **AI Summary :** generates the summary or report of all the task
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Technologies used
+- **Frontend :** React, RTK, Tailwind css, axios, gemini
+- **Backend :** NodeJS, Express, JWT
+- **Database :** MongoDB
+
+
+## Installation
+**1. Clone Repository**
+```bash
+git clone git@github.com:Sandesh-Ghimire0/task-management-frontend.git
+```
+
+**2. Install Dependencies**
+1. Backend Dependencies
+```bash
+cd backend
+npm install
+```
+2. Frontend Dependencies
+```bash
+cd frontend
+npm install
+```
+
+**3. Run server**\
+(for both backend and frontend)
+```bash
+npm run dev
+```
+
+## Screenshots
+![Login Page](../frontend/public/login.png)
+![Dashboard1](../frontend/public/dashboard1.png)
+![Dashboard2](../frontend/public/dashboard2.png)
+![Tasks List](../frontend/public/tasks.png)
+![Form](../frontend/public/form.png)
