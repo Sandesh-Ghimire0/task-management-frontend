@@ -49,8 +49,8 @@ npm run dev
 ```
 
 ## Screenshots
-![Login Page](../frontend/public/login.png)
-![Dashboard1](../frontend/public/dashboard1.png)
-![Dashboard2](../frontend/public/dashboard2.png)
-![Tasks List](../frontend/public/tasks.png)
-![Form](../frontend/public/form.png)
+![Login Page](public/dashboard1.png)
+![Dashboard1](public/dashboard1.png)
+![Dashboard2](public/dashboard2.png)
+![Tasks List](/public/tasks.png)
+![Form](public/form.png)
