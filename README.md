@@ -49,7 +49,7 @@ npm run dev
 ```
 
 ## Screenshots
-![Login Page](public/dashboard1.png)
+![Login Page](public/login.png)
 ![Dashboard1](public/dashboard1.png)
 ![Dashboard2](public/dashboard2.png)
 ![Tasks List](/public/tasks.png)
