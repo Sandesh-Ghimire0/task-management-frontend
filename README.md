@@ -62,8 +62,9 @@ npm run dev
 ![Login Page](public/login.png)
 ![Dashboard1](public/dashboard1.png)
 ![Dashboard2](public/dashboard2.png)
-![Tasks List](public/tasks.png)
+![Tasks List](/public/tasks.png)
 ![Form](public/form.png)
+
 
 ## Backend
 https://github.com/Sandesh-Ghimire0/task-management-backend
